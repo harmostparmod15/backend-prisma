@@ -11,9 +11,20 @@ export const signupUser = async (
 ) => {
   try {
     const response = await userService.signupUser(req.body);
-    return res.json({ success: true, data: response });
+    return res.json({
+      success: true,
+      message: "successfully signed you up",
+      data: response,
+      error: {},
+    });
   } catch (error) {
     console.log("error from controller");
+    return res.json({
+      success: false,
+      message: "unable to  signed you up",
+      data: [],
+      error: error,
+    });
   }
 };
 
