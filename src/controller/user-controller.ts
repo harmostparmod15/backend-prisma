@@ -1,3 +1,4 @@
+import { error } from "console";
 import UserService from "../service/user-service";
 
 import express from "express";
@@ -35,8 +36,19 @@ export const signinUser = async (
 ) => {
   try {
     const response = await userService.signinUser(req.body);
-    return res.json({ success: true, data: response });
+    return res.json({
+      success: true,
+      message: "successfully signed you in ",
+      data: response,
+      error: {},
+    });
   } catch (error) {
     console.log("error from controller");
+    return res.json({
+      success: false,
+      message: "unable to  signed you in ",
+      data: [],
+      error: error,
+    });
   }
 };
